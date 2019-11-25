@@ -1,0 +1,62 @@
+﻿@using TourTravelDemo.Models
+@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<Blog>
+
+@{
+    ViewBag.Title = "Blog";
+}
+
+<div id="content_wrapper">
+    <!--page title start-->
+    <div class="page_title" data-stellar-background-ratio="0" data-stellar-vertical-offset="0" style="background-image:url(http://placehold.it/1599x640);">
+        <ul>
+            <li><a href="">Blog</a></li>
+            <li>News</li>
+        </ul>
+    </div>
+    <!--page title end-->
+    <div class="clearfix"></div>
+    <div class="container">
+        <div class="row push-down-100">
+            <div class="col-md-12">
+                <div class="post_wrapper">
+                    <div class="travel_loader"> <img src="images/icon/travel_loader.gif" alt="" /> </div>
+                    @foreach (var item in Model)
+                    {
+                        <div class="travel_post">
+                            <h3>@item.Title</h3>
+                            <div class="travel_meta">
+                                <ul>
+                                    <li>@item.CreateDate</li>
+                                    <li><a href=""><i class="fa fa-heart"></i> Likes</a></li>
+                                    <li><a href=""><i class="fa fa-comments"></i> Comments</a></li>
+                                    <li><i class="fa fa-tags"></i> <a href="">Tour</a>, <a href="">Place</a>, <a href="">Trip</a>, <a href="">Country</a></li>
+                                </ul>
+                            </div>
+                            <img src="images/uploads/@item.Photo" alt="blog" />
+                            <p>@item.Description</p>
+                            <a href="@Url.Action("DetailBlog","Blog",new { slug = item.Url })" class="btn-travel btn-green">Đọc tiếp</a>
+                        </div>
+                    }
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions
+               {
+                   UlElementClasses = new[] { "travel_pagination" },
+                   DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                   DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                   LinkToPreviousPageFormat = "<i class=\"fa fa-angle-double-left\"></i>",
+                   LinkToNextPageFormat = "<i class=\"fa fa-angle-double-right\"></i>",
+               })
+                    @*<ul class="travel_pagination">
+                            <li><a href=""><i class="fa fa-angle-double-left"></i></a></li>
+                            <li><a href="">1</a></li>
+                            <li class="active"><a href="">2</a></li>
+                            <li><a href="">3</a></li>
+                            <li><a href="">4</a></li>
+                            <li><a href=""><i class="fa fa-angle-double-right"></i></a></li>
+                        </ul>*@
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

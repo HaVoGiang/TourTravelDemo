@@ -1,0 +1,12 @@
+﻿@using TourTravelDemo.Models
+@model Photo
+
+@if(Model == null)
+{
+    @Html.Raw("http://placehold.it/570x437");
+}
+else
+{
+   @Html.Raw("/images/uploads/" + Model.PathPhoto);
+}
+

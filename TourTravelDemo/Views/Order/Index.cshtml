@@ -1,0 +1,123 @@
+﻿@using TourTravelDemo.Models
+
+@{
+    ViewBag.Title = "Thanh toán";
+    Tour tour = ViewBag.Tour as Tour;
+    List<TourOptionRelate> tourOption = ViewBag.TourOption as List<TourOptionRelate>;
+}
+
+<div id="content_wrapper">
+    <!--page title Start-->
+    <div class="page_title" data-stellar-background-ratio="0" data-stellar-vertical-offset="0" style="background-image:url(http://placehold.it/1599x640);">
+        <ul>
+            <li><a href="javascript:;">Tour package - booking</a></li>
+        </ul>
+    </div>
+    <!--page title end-->
+    <div class="clearfix"></div>
+    <div class="full_width destinaion_sorting_section">
+        <div class="container">
+            <div class="row space_100">
+                <!-- left sidebar start -->
+                <!-- left sidebar end -->
+                <!-- right main start -->
+                <div class="col-lg-12">
+                    <div class="tour_package_booking_section">
+                        <!-- package tabs start -->
+                        <div id="tour_booking_tabs">
+                            <!-- tabs start -->
+                            <div class="tour_booking_tabs">
+                                <ul>
+                                    <li><a href="#booking_details">Booking Details</a></li>
+                                    <li><a href="#personal_info">Personal Info</a></li>
+                                    <li><a href="#payment_info">Payment Info</a></li>
+                                    <li><a href="#confirmation">Confirmation</a></li>
+                                </ul>
+                            </div>
+                            <!-- tabs end -->
+                            <!-- booking_details Start -->
+                            <div id="booking_details" class="main_content_area">
+                                <div class="inner_container">
+                                    <!--  tab inner section Start -->
+                                    <div class="tab_inner_section">
+                                        <div class="heading_tab_inner">
+                                            <h5>Tour package Details</h5>
+                                            <span>change tour</span>
+                                        </div>
+                                        <div class="tab_inner_body full_width">
+                                            <!--  review area start -->
+                                            <div class="tab_review_area">
+                                                <img src="@{ Html.RenderAction("AvatarTourPartial", "Home", new { tourId = tour.Id }); }" alt="review image">
+                                                <div class="review_content">
+                                                    <div class="top_head_bar">
+                                                        <h4>@tour.Title</h4>
+                                                        <span class="country_span">@tour.Destination.Title</span><span class="time_date"><i class="fa fa-clock-o"></i>@tour.DaysTour ngày</span>
+                                                    </div>
+                                                    <div class="review_star_cover">
+                                                        <div class="bottom_star_rating"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
+                                                        <span>345 Reviews</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--  review area start -->
+                                            <!-- tab include area Start -->
+                                            <div class="inludes_section">
+                                                <div class="left_lists col-lg-4 col-md-4">
+                                                    <table>
+                                                        <tr>
+                                                            <td class="label_list">StartDay</td>
+                                                            <td>-</td>
+                                                            <td>@Session["StartDay"]</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="label_list">adults</td>
+                                                            <td>-</td>
+                                                            <td>@Session["Adults"]</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="label_list">children</td>
+                                                            <td>-</td>
+                                                            <td>@Session["Kids"]</td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                                <div class="right_includes col-lg-8 col-md-8">
+                                                    <h5 class="includes_text">includes:</h5>
+                                                    <ul class="sort_place_icons">
+                                                        @foreach (var item in tourOption)
+                                                        {
+                                                            <li><i class="@item.TourOption.Icon"></i> @item.TourOption.Title</li>
+                                                        }
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <!-- tab include area End -->
+                                        </div>
+                                    </div>
+                                    <!--  tab inner section End -->
+                                </div>
+                                <!-- proceed button -->
+                                <div class="full_width t_align_c">
+                                    <a href="@Url.Action("PersonalInfo")" class="btn_green proceed_buttton btns">proceed to next step</a>
+                                </div>
+                                <!-- proceed button -->
+                            </div>
+                            <!-- booking_details End -->
+
+                        </div>
+                        <!-- package tabs End -->
+                    </div>
+                    <!-- right main start -->
+                </div>
+                <!-- col-lg-9-end -->
+            </div>
+            <!--  row main -->
+        </div>
+        <!-- container -->
+    </div>
+    <!-- main wrapper -->
+    <div class="clearfix"></div>
+
+    <!--content body end-->
+</div>
+

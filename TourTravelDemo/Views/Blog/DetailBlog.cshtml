@@ -1,0 +1,77 @@
+﻿@using TourTravelDemo.Models
+@model Blog
+@{
+    ViewBag.Title = Model.Title;
+    //var listBlog = ViewBag.ListBlog as List<Blog>;
+    //int index = listBlog.FindIndex(x => x.Id == Model.Id);
+    //int nextIndex = listBlog.FindLastIndex(x => x.Id == Model.Id) == index ? index : index + 1;
+    //int lastIndex = index == 0 ? 0 : index - 1;
+
+    string blogNext = ViewBag.BlogNextSlug;
+    string blogLast = ViewBag.BlogLastSlug;
+}
+
+<div id="content_wrapper">
+    <!--page title start-->
+    <div class="page_title" data-stellar-background-ratio="0" data-stellar-vertical-offset="0" style="background-image:url(http://placehold.it/1599x640);">
+        <ul>
+            <li><a href="">Blog</a></li>
+            <li>News</li>
+        </ul>
+    </div>
+    <!--page title end-->
+    <div class="clearfix"></div>
+    <div class="container">
+        <div class="row push-down-100">
+            <div class="col-md-12">
+                <div class="blog_single_page_wrapper">
+                    <div class="travel_post_switcher">
+                        <a href="@Url.Action("DetailBlog","Blog",new { slug = blogLast})" class="previous_post"><i class="fa fa-caret-left"></i> Previous Post</a>
+                        <a href="@Url.Action("DetailBlog","Blog",new { slug = blogNext })" class="next_post">Next Post <i class="fa fa-caret-right"></i></a>
+                    </div>
+                    <div class="travel_post">
+                        <img src="~/Images/uploads/@Model.Photo" alt="blog" />
+                        <h3>@Model.Title</h3>
+                        <div class="travel_meta">
+                            <ul>
+                                <li>@Model.CreateDate</li>
+                                <li><a href=""><i class="fa fa-heart"></i> Likes</a></li>
+                                <li><a href=""><i class="fa fa-comments"></i> Comments</a></li>
+                                <li><i class="fa fa-tags"></i> <a href="">Tour</a>, <a href="">Place</a>, <a href="">Trip</a>, <a href="">Country</a></li>
+                            </ul>
+                        </div>
+
+                        @Html.Raw(Model.Content)
+                        
+
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="tagcloud">
+                                    <i class="fa fa-tags"></i>
+                                    <span class="tag_heading">Tags :</span>
+                                    <a href="javascript:;"> Tours,</a>
+                                    <a href="javascript:;"> Travels,</a>
+                                    <a href="javascript:;"> Trip,</a>
+                                    <a href="javascript:;"> World,</a>
+                                    <a href="javascript:;"> Travelling,</a>
+                                    <a href="javascript:;"> Hotel,</a>
+                                    <a href="javascript:;"> Rental</a>
+                                </div>
+                            </div>
+                            <div class="col-md-4 text-right">
+                                <div class="post_share">
+                                    <i class="fa fa-share-alt"></i>
+                                    <span class="post_share_heading">Share :</span>
+                                    <a class="facebook" href="javascript:;"><i class="fa fa-facebook-square"></i></a>
+                                    <a class="twitter" href="javascript:;"><i class="fa fa-twitter-square"></i></a>
+                                    <a class="google-plus" href="javascript:;"><i class="fa fa-google-plus-square"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

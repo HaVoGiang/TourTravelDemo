@@ -1,0 +1,56 @@
+﻿@using TourTravelDemo.Models
+@model List<Tour>
+@{ 
+    var destination = ViewBag.Destination as Destination;
+    ViewBag.Title = destination.Title;
+}
+<!--content body start-->
+<div id="content_wrapper">
+    <!--page title start-->
+    <div class="page_title" data-stellar-background-ratio="0" data-stellar-vertical-offset="0" style="background-image:url(http://placehold.it/1599x640);">
+        <ul>
+            <li><a href="javascript:;">@destination.Title</a></li>
+        </ul>
+    </div>
+    <!--page title end-->
+    <div class="clearfix"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="portfolio-row product-destination-tour">
+                    <div class="portfolio_column_3_popup">
+                        <div id="portfolio-item-container" class="max-col-3 popup-gallery" data-layoutmode="fitRows">
+
+                            @foreach (var item in Model)
+                            {
+                                <div class="portfolio-item col-md-4 col-sm-4 col-xs-12 portfolio-custom @item.CreateDate.Year">
+                                    <figure>
+                                        <a href="javascript:;" class="zoom-item" title="Portfolio Item Title">
+                                            <img src="@{ Html.RenderAction("AvatarTourPartial","Home", new { tourId = item.Id }); }" alt="portfolio item name">
+                                        </a>
+                                    </figure>
+                                    <div class="portfolio-content">
+                                        <div class="portfolio-meta">
+                                            <a href="@{ Html.RenderAction("AvatarTourPartial","Home", new { tourId = item.Id }); }" title="Sydney"><i class="fa fa-search-plus"></i></a>
+                                            <h2 class="portfolio-title"> <a href="@Url.Action("TourDetail","Tour",new { slugCategory = item.Category.Url, slug = item.Url })">@item.Title</a></h2>
+                                        </div>
+                                        <!-- End .portfolio-meta -->
+                                    </div>
+                                    <!-- End .portfolio-content -->
+                                </div>
+                                <!-- End .portfolio-item -->
+                            }
+                            
+                        </div><!-- End #portfolio-item-container -->
+                    </div><!--  portfolio_column_3_popup end -->
+                </div> <!-- end .row -->
+
+            </div>
+            <!-- End .col-md-12 -->
+        </div>
+        <!-- End .row -->
+    </div>
+    <!-- End .container -->
+
+</div>
+<!--content body end-->

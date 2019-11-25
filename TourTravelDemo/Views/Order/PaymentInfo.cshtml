@@ -1,0 +1,99 @@
+﻿@using TourTravelDemo.Models
+@model Tour
+@{
+    ViewBag.Title = "Thanh toán";
+}
+
+<div id="content_wrapper">
+    <!--page title Start-->
+    <div class="page_title" data-stellar-background-ratio="0" data-stellar-vertical-offset="0" style="background-image:url(http://placehold.it/1599x640);">
+        <ul>
+            <li><a href="javascript:;">Tour package - booking</a></li>
+        </ul>
+    </div>
+    <!--page title end-->
+    <div class="clearfix"></div>
+    <div class="full_width destinaion_sorting_section">
+        <div class="container">
+            <div class="row space_100">
+                <!-- left sidebar start -->
+                <!-- left sidebar end -->
+                <!-- right main start -->
+                <div class="col-lg-12">
+                    <div class="tour_package_booking_section">
+                        <!-- package tabs start -->
+                        <div id="tour_booking_tabs">
+                            <!-- tabs start -->
+                            <div class="tour_booking_tabs">
+                                <ul>
+                                    <li><a href="#booking_details">Booking Details</a></li>
+                                    <li><a href="#personal_info">Personal Info</a></li>
+                                    <li class="ui-tabs-tab ui-state-default ui-tab ui-corner-top ui-tabs-active ui-state-active"><a href="#payment_info">Payment Info</a></li>
+                                    <li><a href="#confirmation">Confirmation</a></li>
+                                </ul>
+                            </div>
+                            <!-- tabs end -->
+                            <div id="payment_info" class="main_content_area">
+                                <!-- inner_container Start -->
+                                <div class="inner_container">
+                                    <!--  tab inner three section Start -->
+                                    <div class="tab_inner_section">
+                                        <div class="heading_tab_inner">
+                                            <h5>payment Details</h5>
+                                        </div>
+                                        <!--  tab_inner_body Start-->
+                                        <div class="tab_inner_body full_width">
+                                            <div class="payment_details_main">
+                                                <!-- Review content main -->
+                                                <div class=" col-lg-8 col-md-8 review_content">
+                                                    <div class="top_head_bar">
+                                                        <h4>@Model.Title</h4>
+                                                        <span class="country_span">@Model.Destination.Title</span> <span class="time_date"><i class="fa fa-clock-o"></i>@Model.DaysTour ngày</span>
+                                                    </div>
+                                                    <div class="review_star_cover">
+                                                        <div class="bottom_star_rating"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
+                                                        <span>345 Reviews</span>
+                                                    </div>
+                                                </div>
+                                                <!-- Review content main -->
+                                                <div class="col-lg-4 col-md-4">
+                                                    <div class="payment_table">
+                                                        <ul>
+                                                            <li> <span>base price</span><span>@String.Format("{0:0,0 vnđ}", Model.Price)</span> </li>
+                                                            <li> <span>Adults (@Session["Adults"])</span><span>@String.Format("{0:0,0 vnđ}", Model.Price * int.Parse(Session["Adults"].ToString()))</span> </li>
+                                                            <li> <span>Kids (@Session["Kids"])</span><span>@String.Format("{0:0,0 vnđ}", Model.Price * int.Parse(Session["Kids"].ToString()))</span> </li>
+                                                            <li class="total_row"> <span>Total</span><span>@String.Format("{0:0,0 vnđ}", Model.Price * (int.Parse(Session["Kids"].ToString()) + int.Parse(Session["Adults"].ToString())))</span> </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- payment_details_main end -->
+                                        </div>
+                                        <!--  tab_inner_body end -->
+                                        <a href="@Url.Action("PaymentInfoConfirm")" value="proceed payment" class="btn_green proceed_buttton btns">proceed payment</a>
+                                        <!--  tab inner three section End -->
+                                    </div>
+                                    
+
+                                </div>
+                                <!-- inner_container end -->
+                            </div>
+
+                        </div>
+                        <!-- package tabs End -->
+                    </div>
+                    <!-- right main start -->
+                </div>
+                <!-- col-lg-9-end -->
+            </div>
+            <!--  row main -->
+        </div>
+        <!-- container -->
+    </div>
+    <!-- main wrapper -->
+    <div class="clearfix"></div>
+
+    <!--content body end-->
+</div>
+

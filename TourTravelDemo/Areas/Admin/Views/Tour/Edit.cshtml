@@ -1,0 +1,242 @@
+﻿@using TourTravelDemo.Models
+@model Tour
+@{
+    ViewBag.Title = "Edit";
+    List<TourOption> tourOptions = ViewBag.TourOption as List<TourOption>;
+    var tOptionRelate = ViewBag.TourOptionRelate as List<TourOptionRelate>;
+}
+
+@section style{
+    <!-- Favicon -->
+    <link rel="icon" href="~/Areas/Admin/assets/images/brand/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" type="image/x-icon" href="~/Areas/Admin/assets/images/brand/favicon.ico" />
+
+    <!-- Title -->
+    <title>Hogo – Creative Admin Multipurpose Responsive Bootstrap4 Dashboard HTML Template</title>
+
+    <!--Bootstrap.min css-->
+    <link rel="stylesheet" href="~/Areas/Admin/assets/plugins/bootstrap/css/bootstrap.min.css">
+
+    <!-- Dashboard css -->
+    <link href="~/Areas/Admin/assets/css/style.css" rel="stylesheet" />
+
+    <!-- Custom scroll bar css-->
+    <link href="~/Areas/Admin/assets/plugins/scroll-bar/jquery.mCustomScrollbar.css" rel="stylesheet" />
+
+    <!-- Sidemenu css -->
+    <link href="~/Areas/Admin/assets/plugins/toggle-sidebar/full-sidemenu-dark.css" rel="stylesheet" />
+
+    <!--Daterangepicker css-->
+    <link href="~/Areas/Admin/assets/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" />
+
+    <!-- Rightsidebar css -->
+    <link href="~/Areas/Admin/assets/plugins/sidebar/sidebar.css" rel="stylesheet">
+
+    <!-- Sidebar Accordions css -->
+    <link href="~/Areas/Admin/assets/plugins/accordion1/css/easy-responsive-tabs.css" rel="stylesheet">
+
+    <!-- Owl Theme css-->
+    <link href="~/Areas/Admin/assets/plugins/owl-carousel/owl.carousel.css" rel="stylesheet">
+
+    <!-- Morris  Charts css-->
+    <link href="~/Areas/Admin/assets/plugins/morris/morris.css" rel="stylesheet" />
+
+    <!---Font icons css-->
+    <link href="~/Areas/Admin/assets/plugins/iconfonts/plugin.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/assets/plugins/iconfonts/icons.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/assets/fonts/fonts/font-awesome.min.css" rel="stylesheet">
+}
+<!-- page-header -->
+<div class="page-header">
+    <ol class="breadcrumb">
+        <!-- breadcrumb -->
+        <li class="breadcrumb-item"><a href="#">Tables</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Default Table</li>
+    </ol><!-- End breadcrumb -->
+    <div class="ml-auto">
+        <div class="input-group">
+            <a class="btn btn-primary text-white mr-2" id="daterange-btn">
+                <span>
+                    <i class="fa fa-calendar"></i> Events Settings
+                </span>
+                <i class="fa fa-caret-down"></i>
+            </a>
+            <a href="#" class="btn btn-secondary text-white" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Rating">
+                <span>
+                    <i class="fa fa-star"></i>
+                </span>
+            </a>
+        </div>
+    </div>
+</div>
+<!-- End page-header -->
+
+<div class="row">
+    <div class="col-md-12">
+        @using (Html.BeginForm("Edit", "Tour", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(x => x.Id)
+            @Html.HiddenFor(x => x.CreateDate)
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="mb-0 card-title">Default Form Input Fields with labels</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+
+
+                            <div class="form-group">
+                                <label class="form-label">Category</label>
+                                @Html.DropDownList("CategoryId", null, new { @class = "form-control select2 custom-select", data_placeholder = "Chon danh muc" })
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <label class="form-label">Destination</label>
+                                @Html.DropDownList("DestinationId", null, new { @class = "form-control select2 custom-select", data_placeholder = "Nơi đến" })
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Title</label>
+                                @Html.TextBoxFor(n => n.Title, new { @class = "form-control", @placeholder = "Tên tour" })
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Price</label>
+                                @Html.TextBoxFor(n => n.Price, new { @class = "form-control", @placeholder = "Giá", type = "number" })
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Days</label>
+                                @Html.TextBoxFor(n => n.DaysTour, new { @class = "form-control", @placeholder = "Số ngày của tour", type = "number" })
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Description</label>
+                                @Html.TextAreaFor(n => n.Description, new { @class = "form-control", rows = "4", placeholder = "nhap description" })
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Content</label>
+                                @Html.TextAreaFor(n => n.Content, new { id = "elm1" })
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Url</label>
+                                @Html.TextBoxFor(n => n.Url, new { @class = "form-control", @placeholder = "url" })
+                            </div>
+
+                            <div class="form-group">
+                                <label class="custom-switch">
+                                    @Html.CheckBoxFor(n => n.Publish, new { @class = "custom-switch-input" })
+                                    <span class="custom-switch-indicator"></span>
+                                    <span class="custom-switch-description">Publish</span>
+                                </label>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Status</label>
+                                @Html.TextBoxFor(n => n.Status, new { @class = "form-control", @placeholder = "Status" })
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="form-group form-elements m-0">
+                    <div class="form-label">TourOptions</div>
+                    <div class="custom-controls-stacked">
+                        @foreach (var item in tourOptions)
+                        {
+                        <label class="custom-control custom-checkbox">
+                            @{ var result = tOptionRelate.Where(n => n.TourOptionId == item.Id);
+                            }
+                            @if (result.Any())
+                            {
+                                @Html.CheckBox("tOptions" + item.Id, new { @class = "custom-control-input", @checked = "checked" })
+                            }
+                            else
+                            {
+                                @Html.CheckBox("tOptions" + item.Id, new { @class = "custom-control-input" })
+                            }
+                            <span class="custom-control-label">@item.Title</span>
+
+                        </label>
+                        }
+
+                    </div>
+                </div>
+            </div>
+            <a class="btn btn-danger" href="@Url.Action("Index")"> Quay lai </a>
+            <input type="submit" class="btn btn-primary" value="Save" />
+        }
+
+    </div>
+</div>
+
+@section scripts{
+    <!-- Jquery js-->
+    <script src="~/Areas/Admin/assets/js/vendors/jquery-3.2.1.min.js"></script>
+
+    <!--Bootstrap.min js-->
+    <script src="~/Areas/Admin/assets/plugins/bootstrap/popper.min.js"></script>
+    <script src="~/Areas/Admin/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+    <!--Jquery Sparkline js-->
+    <script src="~/Areas/Admin/assets/js/vendors/jquery.sparkline.min.js"></script>
+
+    <!-- Chart Circle js-->
+    <script src="~/Areas/Admin/assets/js/vendors/circle-progress.min.js"></script>
+
+    <!-- Star Rating js-->
+    <script src="~/Areas/Admin/assets/plugins/rating/jquery.rating-stars.js"></script>
+
+    <!--Moment js-->
+    <script src="~/Areas/Admin/assets/plugins/moment/moment.min.js"></script>
+
+    <!-- Daterangepicker js-->
+    <script src="~/Areas/Admin/assets/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+    <!--Side-menu js-->
+    <script src="~/Areas/Admin/assets/plugins/toggle-sidebar/sidemenu.js"></script>
+
+    <!-- Sidebar Accordions js -->
+    <script src="~/Areas/Admin/assets/plugins/accordion1/js/easyResponsiveTabs.js"></script>
+
+    <!-- Custom scroll bar js-->
+    <script src="~/Areas/Admin/assets/plugins/scroll-bar/jquery.mCustomScrollbar.concat.min.js"></script>
+
+    <!--Owl Carousel js -->
+    <script src="~/Areas/Admin/assets/plugins/owl-carousel/owl.carousel.js"></script>
+    <script src="~/Areas/Admin/assets/plugins/owl-carousel/owl-main.js"></script>
+
+    <!-- Rightsidebar js -->
+    <script src="~/Areas/Admin/assets/plugins/sidebar/sidebar.js"></script>
+
+    <!-- Charts js-->
+    <script src="~/Areas/Admin/assets/plugins/chart/chart.bundle.js"></script>
+    <script src="~/Areas/Admin/assets/plugins/chart/utils.js"></script>
+
+    <!--Time Counter js-->
+    <script src="~/Areas/Admin/assets/plugins/counters/jquery.missofis-countdown.js"></script>
+    <script src="~/Areas/Admin/assets/plugins/counters/counter.js"></script>
+
+    <!--Morris  Charts js-->
+    <script src="~/Areas/Admin/assets/plugins/morris/raphael-min.js"></script>
+    <script src="~/Areas/Admin/assets/plugins/morris/morris.js"></script>
+
+    <!--ckeditor js-->
+    <script src="~/Areas/Admin/assets/plugins/tinymce/tinymce.min.js"></script>
+    <script src="~/Areas/Admin/assets/js/formeditor.js"></script>
+
+    <!-- Custom js-->
+    <script src="~/Areas/Admin/assets/js/custom.js"></script>
+}
+

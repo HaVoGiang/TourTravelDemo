@@ -1,0 +1,221 @@
+﻿@using TourTravelDemo.Models
+
+@{
+    ViewBag.Title = "Thanh toán";
+    var tour = ViewBag.Tour as Tour;
+}
+
+<div id="content_wrapper">
+    <!--page title Start-->
+    <div class="page_title" data-stellar-background-ratio="0" data-stellar-vertical-offset="0" style="background-image:url(http://placehold.it/1599x640);">
+        <ul>
+            <li><a href="javascript:;">Tour package - booking</a></li>
+        </ul>
+    </div>
+    <!--page title end-->
+    <div class="clearfix"></div>
+    <div class="full_width destinaion_sorting_section">
+        <div class="container">
+            <div class="row space_100">
+                <!-- left sidebar start -->
+                <!-- left sidebar end -->
+                <!-- right main start -->
+                <div class="col-lg-12">
+                    <div class="tour_package_booking_section">
+                        <!-- package tabs start -->
+                        <div id="tour_booking_tabs">
+                            <!-- tabs start -->
+                            <div class="tour_booking_tabs">
+                                <ul>
+                                    <li><a href="#booking_details">Booking Details</a></li>
+                                    <li><a href="#personal_info">Personal Info</a></li>
+                                    <li><a href="#payment_info">Payment Info</a></li>
+                                    <li class="ui-tabs-tab ui-state-default ui-tab ui-corner-top ui-tabs-active ui-state-active"><a href="#confirmation">Confirmation</a></li>
+                                </ul>
+                            </div>
+                            <!-- tabs end -->
+                            <div id="confirmation" class="main_content_area">
+                                <div class="inner_container">
+                                    <!-- confirmation message -->
+                                    <div class="full_width confirmation_msg"> <span>Thank you. Your Booking is Confirmed Now</span> </div>
+                                    <!-- confirmation message End-->
+                                    <!--  tab inner three section Start -->
+                                    <div class="tab_inner_section">
+                                        <div class="heading_tab_inner">
+                                            <h5>payment Details</h5>
+                                        </div>
+                                        <!--  tab_inner_body Start-->
+                                        <div class="tab_inner_body full_width">
+                                            <div class="payment_details_main">
+                                                <!-- Review content main -->
+                                                <div class=" col-lg-9 col-md-9 review_content">
+                                                    <div class="top_head_bar">
+                                                        <h4>@tour.Title</h4>
+                                                        <span class="country_span">@tour.Destination.Title</span> <span class="time_date"><i class="fa fa-clock-o"></i>@tour.DaysTour ngày</span>
+                                                    </div>
+                                                    <div class="review_star_cover">
+                                                        <div class="bottom_star_rating"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
+                                                        <span>345 Reviews</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3">
+                                                    <div class="doller_left">
+                                                        <h2>@String.Format("{0:0,0 vnđ}", tour.Price)</h2>
+                                                        <p>Mỗi người</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- payment_details_main end -->
+                                            <!-- table section main start-->
+                                            <div class="full_width package_table_section">
+                                                <div class="col-lg-6 col-md-6 border_right">
+                                                    <div class="payment_table_package">
+                                                        <table class="table">
+                                                            <tr>
+                                                                <td>Ngày bắt đầu</td>
+                                                                <td>:</td>
+                                                                <td>@Session["StartDay"]</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Day</td>
+                                                                <td>:</td>
+                                                                <td>@tour.DaysTour</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Adults</td>
+                                                                <td>:</td>
+                                                                <td>@Session["Adults"]</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Children</td>
+                                                                <td>:</td>
+                                                                <td>@Session["Kids"]</td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                    <!--  Payment Table End -->
+                                                </div>
+                                                <div class="col-lg-6 col-md-6">
+                                                    <!--  Payment Table Start -->
+                                                    <div class="payment_table_package">
+                                                        <table>
+                                                            <tr>
+                                                                <td>Giá tour</td>
+                                                                <td>@String.Format("{0:0,0 vnđ}", tour.Price)</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Adults(@Session["Adults"])</td>
+                                                                <td>@String.Format("{0:0,0 vnđ}", tour.Price * int.Parse(Session["Adults"].ToString()))</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Trẻ Em(@Session["Kids"])</td>
+                                                                <td>@String.Format("{0:0,0 vnđ}", tour.Price * int.Parse(Session["Kids"].ToString()))</td>
+                                                            </tr>
+                                                            <tr class="total_row">
+                                                                <td>Tổng cộng</td>
+                                                                <td>@String.Format("{0:0,0 vnđ}",tour.Price * (int.Parse(Session["Adults"].ToString()) + int.Parse(Session["Kids"].ToString())))</td>
+                                                            </tr>
+                                                        </table>
+                                                        <!--  Payment Table End -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- table section main end-->
+                                            <div class="full_width total_price_row">
+                                                <p>Tổng cộng - </p>
+                                                <h2>@String.Format("{0:0,0 vnđ}", tour.Price * (int.Parse(Session["Adults"].ToString()) + int.Parse(Session["Kids"].ToString())))</h2>
+                                            </div>
+                                        </div>
+                                        <!--  tab_inner_body end -->
+                                    </div>
+                                    <!--  tab inner three section End -->
+                                    <!-- information_section start -->
+                                    <div class="full_width information_section">
+                                        <div class="information_title"> Traveler Information </div>
+                                        <div class="full_width information_table_main">
+                                            <div class="col-lg-6 col-md-6 border_right">
+                                                <div class="payment_table_package">
+                                                    <table class="table">
+                                                        <tr>
+                                                            <td>Order Number :</td>
+                                                            <td>@Session["OrderNumber"]</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Name :</td>
+                                                            <td>@Session["Name"]</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Email :</td>
+                                                            <td>@Session["Email"]</td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                                <!--  Payment Table End -->
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 border_right">
+                                                <div class="payment_table_package">
+                                                    <table class="table">
+                                                        <tr>
+                                                            <td>Phone :</td>
+                                                            <td>@Session["Phone"]</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Mã bưu điện : </td>
+                                                            <td>@Session["CountryCode"]</td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                                <!--  Payment Table End -->
+                                            </div>
+                                        </div>
+                                        <!-- information_table End -->
+                                    </div>
+                                    <!-- information_section End -->
+                                    <!-- information_section start -->
+                                    <div class="full_width information_section space_top_65">
+                                        <div class="information_title"> payment Information </div>
+                                        <!-- information_table End -->
+                                        <div class="full_width information_table_main">
+                                            <div class="paymentinfo_list">
+                                                <ul>
+                                                    <li>Bây giờ bạn đã xác nhận và đảm bảo đặt phòng của bạn bằng thẻ tín dụng.</li>
+                                                    <li>Tất cả các khoản thanh toán sẽ được thực hiện tại khách sạn trong thời gian lưu trú của bạn, bỏ qua các quy định khác trong chính sách của khách sạn hoặc trong các điều kiện phòng.</li>
+                                                    <li>Xin lưu ý rằng thẻ tín dụng của bạn có thể được ủy quyền trước khi bạn đến.</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!-- information_table End -->
+                                        <!-- information_table End -->
+                                        <div class="full_width information_table_main">
+                                            <div class="booking_text t_align_c">
+                                                <p>Nếu bạn có thể thay đổi hoặc hủy đặt phòng thông qua công cụ tự phục vụ trực tuyến <a href="#">tại đây. </a></p>
+                                                <span>We Wish You a Pleasent stay</span>
+                                            </div>
+                                        </div>
+                                        <!-- information_table End -->
+                                        <div class="full_width t_align_c">
+                                            <a href="@Url.Action("GoIndex")" value="proceed to next step" class="btn_green proceed_buttton btns">Về Trang Chủ</a>
+                                        </div>
+                                    </div>
+                                    <!-- information_section End -->
+                                </div>
+                                <!--  inner container -->
+                            </div>
+
+                        </div>
+                        <!-- package tabs End -->
+                    </div>
+                    <!-- right main start -->
+                </div>
+                <!-- col-lg-9-end -->
+            </div>
+            <!--  row main -->
+        </div>
+        <!-- container -->
+    </div>
+    <!-- main wrapper -->
+    <div class="clearfix"></div>
+
+    <!--content body end-->
+</div>
+

@@ -1,0 +1,134 @@
+﻿@using TourTravelDemo.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Login";
+}
+
+@section style{
+    <div>
+        <!-- Favicon -->
+        <link rel="icon" href="~/Areas/Admin/assets/images/brand/favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" type="image/x-icon" href="~/Areas/Admin/assets/images/brand/favicon.ico" />
+
+        <!-- Title -->
+        <title>Hogo – Creative Admin Multipurpose Responsive Bootstrap4 Dashboard HTML Template</title>
+
+        <!--Bootstrap.min css-->
+        <link rel="stylesheet" href="~/Areas/Admin/assets/plugins/bootstrap/css/bootstrap.min.css">
+
+        <!-- Dashboard css -->
+        <link href="~/Areas/Admin/assets/css/style.css" rel="stylesheet" />
+
+        <!-- Custom scroll bar css-->
+        <link href="~/Areas/Admin/assets/plugins/scroll-bar/jquery.mCustomScrollbar.css" rel="stylesheet" />
+
+        <!-- Sidemenu css -->
+        <link href="~/Areas/Admin/assets/plugins/toggle-sidebar/full-sidemenu-dark.css" rel="stylesheet" />
+
+        <!--Daterangepicker css-->
+        <link href="~/Areas/Admin/assets/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" />
+
+        <!-- Sidebar Accordions css -->
+        <link href="~/Areas/Admin/assets/plugins/accordion1/css/easy-responsive-tabs.css" rel="stylesheet">
+
+        <!-- Rightsidebar css -->
+        <link href="~/Areas/Admin/assets/plugins/sidebar/sidebar.css" rel="stylesheet">
+
+        <!---Font icons css-->
+        <link href="~/Areas/Admin/assets/plugins/iconfonts/plugin.css" rel="stylesheet" />
+        <link href="~/Areas/Admin/assets/plugins/iconfonts/icons.css" rel="stylesheet" />
+        <link href="~/Areas/Admin/assets/fonts/fonts/font-awesome.min.css" rel="stylesheet">
+    </div>
+}
+<div class="page">
+
+    <!-- page-content -->
+    <div class="page-content">
+        <div class="container text-center text-dark">
+            <div class="row">
+                <div class="col-lg-4 d-block mx-auto">
+                    <div class="row">
+                        <div class="col-xl-12 col-md-12 col-md-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+
+                                        <div class="text-center mb-6">
+                                            <img src="~/Areas/Admin/assets/images/brand/logo.png" class="" alt="">
+                                        </div>
+                                        <h3>Login</h3>
+                                        <p class="text-muted">Sign In to your account</p>
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-addon bg-white"><i class="fa fa-user"></i></span>
+                                            @Html.TextBoxFor(m => m.Email, new { @type = "text", @class = "form-control", @placeholder = "Username" })
+                                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="input-group mb-4">
+                                            <span class="input-group-addon bg-white"><i class="fa fa-unlock-alt"></i></span>
+                                            @Html.TextBoxFor(m => m.Password, new { @type = "password", @class = "form-control", @placeholder = "Password" })
+                                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <button type="submit" class="btn btn-primary btn-block">Login</button>
+                                            </div>
+                                            <div class="col-12">
+                                                <a href="forgot-password.html" class="btn btn-link box-shadow-0 px-0">Forgot password?</a>
+                                            </div>
+                                        </div>
+                                        <div class="mt-6 btn-list">
+                                            <button type="button" class="btn btn-icon btn-facebook"><i class="fa fa-facebook"></i></button>
+                                            <button type="button" class="btn btn-icon btn-google"><i class="fa fa-google"></i></button>
+                                            <button type="button" class="btn btn-icon btn-twitter"><i class="fa fa-twitter"></i></button>
+                                            <button type="button" class="btn btn-icon btn-dribbble"><i class="fa fa-dribbble"></i></button>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- page-content end -->
+</div>
+
+@section scripts{
+    <div>
+        <!-- Jquery js-->
+        <script src="~/Areas/Admin/assets/js/vendors/jquery-3.2.1.min.js"></script>
+
+        <!--Bootstrap.min js-->
+        <script src="~/Areas/Admin/assets/plugins/bootstrap/popper.min.js"></script>
+        <script src="~/Areas/Admin/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+        <!--Jquery Sparkline js-->
+        <script src="~/Areas/Admin/assets/js/vendors/jquery.sparkline.min.js"></script>
+
+        <!-- Chart Circle js-->
+        <script src="~/Areas/Admin/assets/js/vendors/circle-progress.min.js"></script>
+
+        <!-- Star Rating js-->
+        <script src="~/Areas/Admin/assets/plugins/rating/jquery.rating-stars.js"></script>
+
+        <!-- Sidebar Accordions js -->
+        <script src="~/Areas/Admin/assets/plugins/accordion1/js/easyResponsiveTabs.js"></script>
+
+        <!--Moment js-->
+        <script src="~/Areas/Admin/assets/plugins/moment/moment.min.js"></script>
+
+        <!-- Daterangepicker js-->
+        <script src="~/Areas/Admin/assets/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+        <!-- Custom scroll bar js-->
+        <script src="~/Areas/Admin/assets/plugins/scroll-bar/jquery.mCustomScrollbar.concat.min.js"></script>
+
+        <!-- Custom js-->
+        <script src="~/Areas/Admin/assets/js/custom.js"></script>
+    </div>
+}

@@ -1,0 +1,175 @@
+﻿@using TourTravelDemo.Models
+@model Tour
+@{
+    
+    ViewBag.Title = Model.Title;
+    List<TourOptionRelate> tourOption = ViewBag.TourOption as List<TourOptionRelate>;
+    List<Photo> photos = ViewBag.Photo as List<Photo>;
+    List<int> selectNum = new List<int>();
+    for (int i = 0; i <= 20; i++)
+    {
+        selectNum.Add(i);
+    }
+
+    var tourLienQuan = ViewBag.TourLienQuan as List<Tour>;
+}
+<!--content body start-->
+<div id="content_wrapper">
+    <!--page title Start-->
+    <div class="page_title" data-stellar-background-ratio="0" data-stellar-vertical-offset="0" style="background-image:url(http://placehold.it/1599x640);">
+        <ul>
+            <li><a href="javascript:;">@Model.Destination.Title</a></li>
+        </ul>
+    </div>
+    <!--page title end-->
+    <div class="clearfix"></div>
+
+    <div class="full_width destinaion_sorting_section">
+        <div class="container">
+            <div class="row space_100">
+
+                <!-- left sidebar start -->
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="Travelite_left_sidebar_second">
+                        <div class="sidebar_search_bar">
+                            <form>
+                                <input type="search" placeholder="Search" id="sidebar_search">
+                            </form>
+
+                        </div>
+
+
+                        <aside class="widget about_us_widget">
+                            <h4 class="widget-title">about us</h4>
+                            <div class="widgett text_widget">
+                                <p>There are many variations of passages of Lorem Ipsum available, but the joy have suffered alteration in some format, by injected humour.  There are many variations of passages by injected humour.  There are many variations</p>
+                            </div>
+
+                        </aside>
+
+                        <aside class="widget hotel_booking_widget">
+                            <h4 class="widget-title">Need Help For Booking?</h4>
+                            <div class="widgett text_widget">
+                                <p>There are many variations of passages of Lorem Ipsum available, but the joy have </p>
+                                <h3><i class="fa fa-phone"></i>1-669-559-4378</h3>
+                                <h5>or</h5>
+                                <button type="submit" value="submit query" class="submit_query btn-yellow btns">
+                                    submit query
+                                </button>
+
+                            </div>
+
+                        </aside>
+
+                        <aside class="widget similar_pacakges">
+                            <h4 class="widget-title">Tour liên quan</h4>
+                            <div class="widgett text_widget">
+                                @foreach (var item in tourLienQuan)
+                                {
+                                    <div class="image_holder">
+                                        <img src="@{ Html.RenderAction("AvatarTourPartial","Home", new { tourId = item.Id }); }" alt="package thumb">
+                                        <h5><a href="@Url.Action("TourDetail","Tour",new { slugCategory = item.Category.Url, slug = item.Url })">@item.Title</a></h5>
+                                        <h4>@String.Format("{0:0,0 vnđ}", item.Price)/<span>mỗi người</span></h4>
+                                    </div>
+                                }
+                                <a href="@Url.Action("DestinationTour","Destination",new { slug = Model.Url })" class="submit_query btn-yellow btns">Xem thêm</a>
+
+                            </div>
+
+                        </aside>
+
+                    </div>
+                </div>
+                <!-- left sidebar end -->
+                <!-- right main start -->
+                <div class="col-lg-9 col-md-9 col-sm-12">
+                    <div class="tour_packages_right_section left_space_40">
+                        <div class="tour_packages_details_top">
+
+                            <div class="top_head_bar">
+                                <h4>@Model.Title</h4>
+                            </div>
+                            <div class="bottom_desc">
+                                <h5 class="starting_text">Bắt đầu từ<span>@String.Format("{0:0,0 vnđ}", Model.Price) /</span>mỗi người</h5>
+                                <span class="time_date"><i class="fa fa-clock-o"></i>@Model.DaysTour ngày</span>
+                                <h5 class="includes_text">Dịch vụ:</h5>
+                                <!-- desc icons Start-->
+                                <div class="row">
+                                    <div class="col-lg-6 top_icons_part">
+
+                                        <ul class="sort_place_icons">
+                                            @foreach (var item in tourOption)
+                                            {
+                                                <li><i class="@item.TourOption.Icon"></i> @item.TourOption.Title</li>
+                                            }
+                                        </ul>
+                                        <!-- desc icons End-->
+                                    </div>
+
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- slider start -->
+                        <div class="package_details_slider">
+                            <div id="package_details_slider" class="owl-carousel owl-theme">
+                                @foreach (var item in photos)
+                                {
+                                    <div class="item"><img src="~/Images/uploads/@item.PathPhoto" alt="slide"></div>
+                                }
+                            </div>
+                        </div>
+                        <!-- slider end -->
+                        <!-- Booking area Start-->
+                        <div class="booking_area_section">
+                            <p>@Model.Description</p>
+
+                            <div class=" full_width booking_form_bg">
+                                <div class="main_content_form">
+                                    <!-- tab_search form start -->
+                                    @using (Html.BeginForm("BookingDetail", "Order",new { id = Model.Id }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                    {
+
+                                        <div class="pullleft check_in_field">
+                                            <label>available on</label>
+                                            @Html.TextBox("StartDay", null, new { @type = "text", @id = "Check_out_date_tab", @placeholder = "dd/mm/yyyy" })
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+
+                                        <div class="pullleft room_select_field">
+                                            <label>adults</label>
+
+                                            @Html.DropDownList("Adults", new SelectList(selectNum), new { @type = "number", @class = "form-control selectpicker", @id = "search_adults" })
+
+                                            <i class="fa fa-caret-down"></i>
+                                        </div>
+                                        <div class="pullleft room_select_field">
+                                            <label>kids</label>
+                                            @Html.DropDownList("Kids", new SelectList(selectNum), new { @class = "form-control selectpicker", @id = "search_kids" })
+                                            <i class="fa fa-caret-down"></i>
+                                        </div>
+                                        <div class="pullleft submit_field">
+                                            <label>total:<span class="total_doller">@String.Format("{0:0,0 vnđ}", Model.Price)</span></label>
+                                            <input type="submit" value="BOOK NOW" class="search_tabs">
+                                            <button class="btn tab_search" type="submit"> <i class="glyphicon glyphicon-search"></i></button>
+                                        </div>
+                                    }
+                                    <!-- tab_search form End -->
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <!-- Booking area End -->
+                        @Html.Raw(Model.Content)
+
+
+                    </div><!-- right main start -->
+                </div> <!-- col-lg-9-end -->
+            </div><!--  row main -->
+        </div> <!-- container -->
+    </div> <!-- main wrapper -->
+    <!--content body end-->
+</div>

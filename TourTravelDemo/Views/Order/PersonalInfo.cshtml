@@ -1,0 +1,96 @@
+﻿
+@{
+    ViewBag.Title = "Thanh toán";
+}
+
+    <div id="content_wrapper">
+        <!--page title Start-->
+        <div class="page_title" data-stellar-background-ratio="0" data-stellar-vertical-offset="0" style="background-image:url(http://placehold.it/1599x640);">
+            <ul>
+                <li><a href="javascript:;">Tour package - booking</a></li>
+            </ul>
+        </div>
+        <!--page title end-->
+        <div class="clearfix"></div>
+        <div class="full_width destinaion_sorting_section">
+            <div class="container">
+                <div class="row space_100">
+                    <!-- left sidebar start -->
+                    <!-- left sidebar end -->
+                    <!-- right main start -->
+                    <div class="col-lg-12">
+                        <div class="tour_package_booking_section">
+                            <!-- package tabs start -->
+                            <div id="tour_booking_tabs">
+                                <!-- tabs start -->
+                                <div class="tour_booking_tabs">
+                                    <ul>
+                                        <li><a href="#booking_details">Booking Details</a></li>
+                                        <li class="ui-tabs-tab ui-state-default ui-tab ui-corner-top ui-tabs-active ui-state-active"><a href="#personal_info">Personal Info</a></li>
+                                        <li><a href="#payment_info">Payment Info</a></li>
+                                        <li><a href="#confirmation">Confirmation</a></li>
+                                    </ul>
+                                </div>
+                                <!-- tabs end -->
+                                <div id="personal_info" class="main_content_area">
+                                    <!--  tab inner section three Start -->
+                                    <div class="inner_container">
+                                        @using (Html.BeginForm("PersonalInfo", "Order", FormMethod.Post, new { @class = "package_booking_form_main", enctype = "multipart/form-data" }))
+                                        {
+
+                                            <div class="tab_inner_section inner_section_2">
+                                                <div class="tab_inner_body full_width">
+                                                    <!--  package_booking_form start -->
+                                                    <div class="package_booking_form">
+                                                        <div class="col-lg-6 col-md-6">
+                                                            @Html.TextBox("firstName", null, new { @type = "text", @placeholder = "First Name", @name = "firstname", @class = "booking_input" })
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-6">
+                                                            @Html.TextBox("lastName", null, new { @type = "text", @placeholder = "Last Name", @name = "lastname", @class = "booking_input" })
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-6">
+                                                            @Html.TextBox("email", null, new { @type = "email", @placeholder = "Email", @class = "booking_input" })
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-6">
+                                                            @Html.TextBox("cofirmEmail", null, new { @type = "email", @placeholder = "Cofirm Email", @name = "Cofirm_Email", @class = "booking_input" })
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-6">
+                                                            @Html.TextBox("countryCode", null, new { @type = "text", @placeholder = "Country Code", @name = "country_code", @class = "booking_input" })
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-6">
+                                                            @Html.TextBox("phone", null, new { @type = "text", @placeholder = "Phone Number", @name = "phone_number", @class = "booking_input" })
+                                                        </div>
+                                                    </div>
+                                                    <!--  package_booking_form END -->
+                                                </div>
+                                                <!--  tab_inner_body end -->
+                                            </div>
+                                            <!--  tab inner three section End -->
+                                            <!-- proceed button -->
+                                            <div class="full_width t_align_c">
+                                                <button type="submit" value="proceed to next step" class="btn_green proceed_buttton btns">proceed to next step</button>
+                                            </div>
+                                        }
+                                    </div>
+                                    <!--  inner container end -->
+                                </div>
+
+                            </div>
+                            <!-- package tabs End -->
+                        </div>
+                        <!-- right main start -->
+                    </div>
+                    <!-- col-lg-9-end -->
+                </div>
+                <!--  row main -->
+            </div>
+            <!-- container -->
+        </div>
+        <!-- main wrapper -->
+        <div class="clearfix"></div>
+
+        <!--content body end-->
+    </div>
+
+    
+
